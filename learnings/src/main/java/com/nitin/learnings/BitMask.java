@@ -1,15 +1,20 @@
 /*
  * Copyright (c) 2017. [Author nitin_regati] [File BitMask.java]
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do
+ * so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+ * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package com.nitin.learnings;
@@ -22,6 +27,11 @@ import static com.nitin.learnings.BitMask.Smallest0And9DivisibleNumber.find;
  */
 public class BitMask {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
 
         System.out.println("10 -> 90 " + find(10, 90));
@@ -36,7 +46,17 @@ public class BitMask {
         System.out.println("20 -> 900 " + find(20, 900));
     }
 
+    /**
+     * The type Smallest 0 and 9 divisible number.
+     */
     static class Smallest0And9DivisibleNumber {
+        /**
+         * Find boolean.
+         *
+         * @param divisible the divisible
+         * @param expected  the expected
+         * @return the boolean
+         */
         static boolean find(int divisible, int expected) {
             int bin = 1;
             while (true) {

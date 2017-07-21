@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. [Author nitin_regati] [File build.gradle]
+ * Copyright (c) 2017. [Author nitin_regati] [File LazyBartender.java]
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -17,39 +17,43 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-buildscript {
-    repositories {
-        mavenCentral()
+package com.nitin.solutions;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by nitin_regati on 18/07/17.
+ */
+public class LazyBartender {
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+
+        List<int[]> custDrinks = new ArrayList<>();
+        custDrinks.add(new int[]{2, 3, 5, 7, 9});
+        custDrinks.add(new int[]{5});
+        custDrinks.add(new int[]{2, 3});
+        custDrinks.add(new int[]{4});
+        custDrinks.add(new int[]{3, 4, 3, 5, 7});
     }
-}
 
-repositories {
-//    maven {
-//        url '<URL>'
-//    }
-    mavenCentral()
-}
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
+    /**
+     * Solve.
+     *
+     * @param custDrinks the cust drinks
+     */
+    public void solve(List<int[]> custDrinks) {
 
-
-group 'com.nitin.solutions'
-version '1.0-SNAPSHOT'
-
-jar {
-    baseName = 'solutions'
-    version =  '1.0-SNAPSHOT'
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-configurations {
-//    all*.exclude module: 'spring-boot-starter-logging'
-}
-
-dependencies {
-
+        // TODO: 18/07/17
+        /*
+        Perform drink to customer relation
+        Sort by length of customers for a drink
+        Loop through available drinks and add the drink if it increases customer length else leave
+         */
+    }
 }
