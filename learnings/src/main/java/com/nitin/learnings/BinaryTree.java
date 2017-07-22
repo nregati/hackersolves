@@ -69,11 +69,11 @@ public class BinaryTree {
      * @param tree
      */
     private static void distMain(BinaryTree tree) {
-        System.out.printf(String.format("Distance(%d, %d) = %d %n", 4, 5, tree.getDistance(4, 5)));
-        System.out.printf(String.format("Distance(%d, %d) = %d %n", 4, 6, tree.getDistance(4, 6)));
-        System.out.printf(String.format("Distance(%d, %d) = %d %n", 3, 4, tree.getDistance(3, 4)));
-        System.out.printf(String.format("Distance(%d, %d) = %d %n", 2, 4, tree.getDistance(2, 4)));
-        System.out.printf(String.format("Distance(%d, %d) = %d %n", 8, 5, tree.getDistance(8, 5)));
+        System.out.println(String.format("Distance(%d, %d) = %d %n", 4, 5, tree.getDistance(4, 5)));
+        System.out.println(String.format("Distance(%d, %d) = %d %n", 4, 6, tree.getDistance(4, 6)));
+        System.out.println(String.format("Distance(%d, %d) = %d %n", 3, 4, tree.getDistance(3, 4)));
+        System.out.println(String.format("Distance(%d, %d) = %d %n", 2, 4, tree.getDistance(2, 4)));
+        System.out.println(String.format("Distance(%d, %d) = %d %n", 8, 5, tree.getDistance(8, 5)));
     }
 
     /**
@@ -92,20 +92,20 @@ public class BinaryTree {
     private static void lcaMain(BinaryTree tree) {
         Node lca = tree.findLCA(4, 5);
         if (null != lca)
-            System.out.printf("LCA(4,5) = " + lca.data + "\n");
+            System.out.println("LCA(4,5) = " + lca.data);
         if (null != lca)
             lca = tree.findLCA(6, 7);
         if (null != lca)
-            System.out.printf("LCA(6,7) = " + lca.data + "\n");
+            System.out.println("LCA(6,7) = " + lca.data);
         lca = tree.findLCA(4, 3);
         if (null != lca)
-            System.out.printf("LCA(4,3) = " + lca.data + "\n");
+            System.out.println("LCA(4,3) = " + lca.data);
         lca = tree.findLCA(4, 2);
         if (null != lca)
-            System.out.printf("LCA(4,2) = " + lca.data + "\n");
+            System.out.println("LCA(4,2) = " + lca.data);
         lca = tree.findLCA(1, 3);
         if (null != lca)
-            System.out.printf("LCA(1,3) = " + lca.data + "\n");
+            System.out.println("LCA(1,3) = " + lca.data);
     }
 
     private int getDistance(int n1, int n2) {

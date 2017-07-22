@@ -83,7 +83,7 @@ public class Graph {
      */
     void DFSUtil(int vertex, boolean[] visited) {
         visited[vertex] = true;
-        System.out.println(vertex + " ");
+        System.out.println(vertex);
         for (Integer newVertex : adj[vertex]) {
             if (!visited[newVertex])
                 DFSUtil(newVertex, visited);
@@ -132,7 +132,7 @@ public class Graph {
     void topologicalSortUtil(int vertex, boolean[] visited, Stack<Integer> stack) {
 
         visited[vertex] = true;
-        System.out.printf(vertex + " ");
+        System.out.println(vertex);
         for (Integer vtx : adj[vertex]) {
             if (!visited[vtx])
                 topologicalSortUtil(vertex, visited, stack);
@@ -170,6 +170,6 @@ public class Graph {
         Stack<Integer> stack = new Stack<>();
         topologicalSortUtil(0, visited, stack);
         while (!stack.empty())
-            System.out.printf(" Topological sort: " + stack.pop());
+            System.out.println(" Topological sort: " + stack.pop());
     }
 }

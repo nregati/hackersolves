@@ -61,8 +61,7 @@ public class CountingSort {
         ob.sort(arr);
 
         System.out.print("Sorted character array is ");
-        for (int i = 0; i < arr.length; ++i)
-            System.out.print(arr[i]);
+        for (char anArr : arr) System.out.print(anArr);
     }
 
     /**

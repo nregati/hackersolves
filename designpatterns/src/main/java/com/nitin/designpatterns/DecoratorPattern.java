@@ -59,7 +59,7 @@ public class DecoratorPattern {
 
         @Override
         public void draw() {
-            System.out.printf("Draw Rectangle ");
+            System.out.println("Draw Rectangle ");
         }
     }
 
@@ -67,7 +67,7 @@ public class DecoratorPattern {
 
         @Override
         public void draw() {
-            System.out.printf("Draw Circle ");
+            System.out.println("Draw Circle ");
         }
     }
 
@@ -114,7 +114,7 @@ public class DecoratorPattern {
              * Here we are adding border function without actually changing the Shape structure
              */
             shape.draw();
-            System.out.printf("With Red border ");
+            System.out.println("With Red border ");
         }
     }
 }
