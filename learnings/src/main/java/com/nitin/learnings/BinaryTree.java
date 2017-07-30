@@ -19,6 +19,9 @@
 
 package com.nitin.learnings;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * Created by nitin_regati on 21/07/17.
  */
@@ -56,8 +59,13 @@ public class BinaryTree {
 
         BinaryTree tree = new BinaryTree(root);
 
-        lcaMain(tree);
-        distMain(tree);
+//        lcaMain(tree);
+//        distMain(tree);
+//        preOrderMain(tree);
+//        inOredrMain(tree);
+//        postOrderMain(tree);
+        morrisInOrder(tree);
+
     }
 
     /**
@@ -156,6 +164,111 @@ public class BinaryTree {
             return node;
 
         return l_LCA != null ? l_LCA : r_LCA;
+    }
+
+    private static void morrisInOrder(BinaryTree tree) {
+        Node current = tree.root;
+
+        while (null != current) {
+            if (null == current.left) {
+                System.out.println(current.data);
+                current = current.right;
+            } else {
+
+                Node temp = current.left;
+                while (null != temp.right && current != temp.right) { //Inorder predecessor
+                    temp = temp.right;
+                }
+                if (temp.right == current) {
+                    System.out.println(current.data);
+                    temp.right = null;
+                    current = current.right;
+                } else {
+                    temp.right = current;
+                    current = current.left;
+                }
+
+            }
+        }
+    }
+
+    private static void preOrderMain(BinaryTree tree) {
+        preOrderUtil(tree.root);
+    }
+
+    private static void preOrderUtil(Node rootNode) {
+
+        Deque<Node> stack = new ArrayDeque<>();
+        stack.push(rootNode);
+        while (!stack.isEmpty()) {
+            Node newNode = stack.pop();
+            System.out.println(newNode.data);
+            if (null != newNode.right)
+                stack.push(newNode.right);
+            if (null != newNode.left)
+                stack.push(newNode.left);
+        }
+
+    }
+
+    private static void inOredrMain(BinaryTree tree) {
+        inOrderUtil(tree.root);
+    }
+
+    private static void inOrderUtil(Node rootNode) {
+
+        Deque<Node> stack = new ArrayDeque<>();
+
+        Node currentNode = rootNode;
+        stack.push(currentNode);
+        currentNode = currentNode.left;
+
+        while (!stack.isEmpty() || null != currentNode) {
+            while (null != currentNode) {
+                stack.push(currentNode);
+                currentNode = currentNode.left;
+            }
+            currentNode = stack.pop();
+            System.out.println(currentNode.data);
+            currentNode = currentNode.right;
+        }
+
+    }
+
+    private static void postOrderMain(BinaryTree tree) {
+        postOrderUtil(tree.root);
+    }
+
+    private static void postOrderUtil(Node rootNode) {
+
+        Deque<Node> stack = new ArrayDeque<>();
+
+        Node currentNode = rootNode;
+        if (null != currentNode.right)
+            stack.push(currentNode.right);
+        stack.push(currentNode);
+        currentNode = currentNode.left;
+
+        while (!stack.isEmpty()) {
+
+            while (null != currentNode) {
+                if (null != currentNode.right)
+                    stack.push(currentNode.right);
+                stack.push(currentNode);
+                currentNode = currentNode.left;
+            }
+
+            currentNode = stack.pop();
+            if (currentNode.right == stack.peek()) {
+                Node temp = stack.pop();
+                stack.push(currentNode);
+                currentNode = temp;
+            } else {
+                System.out.println(currentNode.data);
+                currentNode = null;
+            }
+
+        }
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. [Author nitin_regati] [File settings.gradle]
+ * Copyright (c) 2017. [Author nitin_regati] [File BinarySearch.java]
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -17,7 +17,47 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-include "learnings", "solutions"
-include 'designpatterns'
-include 'ml'
+package com.nitin.learnings;
 
+/**
+ * Created by nitin_regati on 30/07/17
+ */
+public class BinarySearch {
+
+    /**
+     * Search int.
+     *
+     * @param arr           the arr
+     * @param valueToSearch the value to search
+     * @return the int
+     */
+    public static int search(int[] arr, int valueToSearch) {
+
+        return searchUtil(arr, valueToSearch, 0, arr.length - 1);
+    }
+
+    private static int searchUtil(int[] arr, int valueToSearch, int low, int high) {
+
+        if (high >= low) {
+
+            int mid = (low + high) / 2;
+            if (arr[mid] == valueToSearch)
+                return mid;
+
+            if (valueToSearch > arr[mid])
+                return searchUtil(arr, valueToSearch, mid + 1, high);
+            else
+                return searchUtil(arr, valueToSearch, low, mid - 1);
+        }
+        return -1;
+    }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+
+    }
+}
