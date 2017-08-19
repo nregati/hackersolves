@@ -28,28 +28,28 @@ import java.util.TimerTask;
 public class TimerExample extends TimerTask {
 
 
-    /**
-     * Instantiates a new Timer example.
-     *
-     * @param timesPerSecond the times per second
-     */
-    public TimerExample(int timesPerSecond) {
+  /**
+   * Instantiates a new Timer example.
+   *
+   * @param timesPerSecond the times per second
+   */
+  public TimerExample(int timesPerSecond) {
 
-        Timer timer = new Timer();
-        timer.schedule(this, 200, 1000 / timesPerSecond);
-    }
+    Timer timer = new Timer();
+    timer.schedule(this, 200, 1000 / timesPerSecond);
+  }
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        new TimerExample(10);
-    }
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+    new TimerExample(10);
+  }
 
-    @Override
-    public void run() {
-        System.out.println("Testing");
-    }
+  @Override
+  public void run() {
+    System.out.println("Testing");
+  }
 }

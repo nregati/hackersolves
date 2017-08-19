@@ -26,45 +26,47 @@ import java.util.Scanner;
  */
 public class RepeatedString {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        solve();
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+    solve();
+  }
+
+  /**
+   * Solve.
+   */
+  public static void solve() {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    long len = sc.nextLong();
+    if (str.length() == 0) {
+      System.out.println(0);
+      return;
+    }
+    if (str.length() == 1) {
+      System.out.println(str.charAt(0) == 'a' ? len : 0);
+      return;
     }
 
-    /**
-     * Solve.
-     */
-    public static void solve() {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.next();
-        long len = sc.nextLong();
-        if (str.length() == 0) {
-            System.out.println(0);
-            return;
-        }
-        if (str.length() == 1) {
-            System.out.println(str.charAt(0) == 'a' ? len : 0);
-            return;
-        }
+    System.out.println(
+        len / str.length() * count(str, 'a') + count(str.substring(0, (int) (len % str.length())),
+            'a'));
+    sc.close();
 
-        System.out.println(len / str.length() * count(str, 'a') + count(str.substring(0, (int) (len % str.length())), 'a'));
-        sc.close();
+  }
 
-    }
-
-    /**
-     * Count int.
-     *
-     * @param str the str
-     * @param ch  the ch
-     * @return the int
-     */
-    public static int count(String str, char ch) {
-        return (int) str.chars().filter(c -> c == ch).count();
-    }
+  /**
+   * Count int.
+   *
+   * @param str the str
+   * @param ch the ch
+   * @return the int
+   */
+  public static int count(String str, char ch) {
+    return (int) str.chars().filter(c -> c == ch).count();
+  }
 
 }

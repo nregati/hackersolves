@@ -33,48 +33,49 @@ import java.util.StringTokenizer;
  */
 public class MinSticks {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
 
-        try {
-            solve();
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
+    try {
+      solve();
+    } catch (IOException | ParseException e) {
+      e.printStackTrace();
     }
+  }
 
-    /**
-     * Solve.
-     *
-     * @throws IOException    the io exception
-     * @throws ParseException the parse exception
-     */
-    public static void solve() throws IOException, ParseException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int nofSticks = Integer.parseInt(br.readLine());
-        List<Integer> sticks = new ArrayList<>();
-        StringTokenizer tokenizer = new StringTokenizer(br.readLine());
-        for (int i = 0; i < nofSticks; i++) {
-            sticks.add(Integer.valueOf(tokenizer.nextToken()));
-        }
-        while (sticks.size() != 0) {
-            System.out.println(sticks.size());
-            Collections.sort(sticks);
-            int minLen = sticks.get(0);
-            List<Integer> newSticks = new ArrayList<>();
-            for (int stick : sticks) {
-                stick -= minLen;
-                if (stick > 0)
-                    newSticks.add(stick);
-            }
-            sticks.clear();
-            sticks.addAll(newSticks);
-        }
+  /**
+   * Solve.
+   *
+   * @throws IOException the io exception
+   * @throws ParseException the parse exception
+   */
+  public static void solve() throws IOException, ParseException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int nofSticks = Integer.parseInt(br.readLine());
+    List<Integer> sticks = new ArrayList<>();
+    StringTokenizer tokenizer = new StringTokenizer(br.readLine());
+    for (int i = 0; i < nofSticks; i++) {
+      sticks.add(Integer.valueOf(tokenizer.nextToken()));
     }
+    while (sticks.size() != 0) {
+      System.out.println(sticks.size());
+      Collections.sort(sticks);
+      int minLen = sticks.get(0);
+      List<Integer> newSticks = new ArrayList<>();
+      for (int stick : sticks) {
+        stick -= minLen;
+        if (stick > 0) {
+          newSticks.add(stick);
+        }
+      }
+      sticks.clear();
+      sticks.addAll(newSticks);
+    }
+  }
 }
 
 

@@ -20,201 +20,203 @@
 package com.nitin.designpatterns;
 
 /**
- * Created by nitin_regati on 22/07/17.
- * <p>
- * In Visitor pattern, we use a visitor class which changes the executing algorithm of an element class.
- * By this way, execution algorithm of element can vary as and when visitor varies. This pattern comes
- * under behavior pattern category. As per the pattern, element object has to accept the visitor object
- * so that visitor object handles the operation on the element object.
- * <p>
- * UML: https://www.tutorialspoint.com/design_pattern/images/visitor_pattern_uml_diagram.jpg
+ * Created by nitin_regati on 22/07/17. <p> In Visitor pattern, we use a visitor class which changes
+ * the executing algorithm of an element class. By this way, execution algorithm of element can vary
+ * as and when visitor varies. This pattern comes under behavior pattern category. As per the
+ * pattern, element object has to accept the visitor object so that visitor object handles the
+ * operation on the element object. <p> UML: https://www.tutorialspoint.com/design_pattern/images/visitor_pattern_uml_diagram.jpg
  */
 public class VisitorPattern {
 
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+
+    ComputerPartDisplayVisitor visitor = new ComputerPartDisplayVisitor();
+    Computer computer = new Computer();
+    computer.accept(visitor);
+    Keyboard keyboard = new Keyboard();
+    keyboard.accept(visitor);
+    Mouse mouse = new Mouse();
+    mouse.accept(visitor);
+    Monitor monitor = new Monitor();
+    monitor.accept(visitor);
+
+    ComputerPartRemoveVisitor removeVisitor = new ComputerPartRemoveVisitor();
+    computer.accept(removeVisitor);
+    keyboard.accept(removeVisitor);
+    mouse.accept(removeVisitor);
+    monitor.accept(removeVisitor);
+  }
+
+
+  /**
+   * The interface Computer part visitor.
+   */
+  interface ComputerPartVisitor {
+
     /**
-     * The entry point of application.
+     * Visit.
      *
-     * @param args the input arguments
+     * @param computer the computer
      */
-    public static void main(String[] args) {
-
-        ComputerPartDisplayVisitor visitor = new ComputerPartDisplayVisitor();
-        Computer computer = new Computer();
-        computer.accept(visitor);
-        Keyboard keyboard = new Keyboard();
-        keyboard.accept(visitor);
-        Mouse mouse = new Mouse();
-        mouse.accept(visitor);
-        Monitor monitor = new Monitor();
-        monitor.accept(visitor);
-
-        ComputerPartRemoveVisitor removeVisitor = new ComputerPartRemoveVisitor();
-        computer.accept(removeVisitor);
-        keyboard.accept(removeVisitor);
-        mouse.accept(removeVisitor);
-        monitor.accept(removeVisitor);
-    }
-
+    void visit(Computer computer);
 
     /**
-     * The interface Computer part visitor.
+     * Visit.
+     *
+     * @param keyboard the keyboard
      */
-    interface ComputerPartVisitor {
-        /**
-         * Visit.
-         *
-         * @param computer the computer
-         */
-        void visit(Computer computer);
-
-        /**
-         * Visit.
-         *
-         * @param keyboard the keyboard
-         */
-        void visit(Keyboard keyboard);
-
-        /**
-         * Visit.
-         *
-         * @param mouse the mouse
-         */
-        void visit(Mouse mouse);
-
-        /**
-         * Visit.
-         *
-         * @param monitor the monitor
-         */
-        void visit(Monitor monitor);
-    }
+    void visit(Keyboard keyboard);
 
     /**
-     * The interface Computer part.
+     * Visit.
+     *
+     * @param mouse the mouse
      */
-    interface ComputerPart {
-        /**
-         * Accept.
-         *
-         * @param visitor the visitor
-         */
-        void accept(ComputerPartVisitor visitor);
-    }
+    void visit(Mouse mouse);
 
     /**
-     * The type Computer part display visitor.
+     * Visit.
+     *
+     * @param monitor the monitor
      */
-    static class ComputerPartDisplayVisitor implements ComputerPartVisitor {
+    void visit(Monitor monitor);
+  }
 
-        @Override
-        public void visit(Computer computer) {
-            String[] parts = computer.getParts();
-            System.out.println("Computer has following parts [ ");
-            for (String part : parts) {
-                System.out.println(part + ",");
-            }
-            System.out.println(" ]");
-        }
-
-        @Override
-        public void visit(Keyboard keyboard) {
-            System.out.println("Displaying Keyboard");
-        }
-
-        @Override
-        public void visit(Mouse mouse) {
-            System.out.println("Displaying Mouse");
-        }
-
-        @Override
-        public void visit(Monitor monitor) {
-            System.out.println("Displaying Monitor");
-        }
-    }
+  /**
+   * The interface Computer part.
+   */
+  interface ComputerPart {
 
     /**
-     * The type Computer part remove visitor.
+     * Accept.
+     *
+     * @param visitor the visitor
      */
-    static class ComputerPartRemoveVisitor implements ComputerPartVisitor {
+    void accept(ComputerPartVisitor visitor);
+  }
+
+  /**
+   * The type Computer part display visitor.
+   */
+  static class ComputerPartDisplayVisitor implements ComputerPartVisitor {
+
+    @Override
+    public void visit(Computer computer) {
+      String[] parts = computer.getParts();
+      System.out.println("Computer has following parts [ ");
+      for (String part : parts) {
+        System.out.println(part + ",");
+      }
+      System.out.println(" ]");
+    }
+
+    @Override
+    public void visit(Keyboard keyboard) {
+      System.out.println("Displaying Keyboard");
+    }
+
+    @Override
+    public void visit(Mouse mouse) {
+      System.out.println("Displaying Mouse");
+    }
+
+    @Override
+    public void visit(Monitor monitor) {
+      System.out.println("Displaying Monitor");
+    }
+  }
+
+  /**
+   * The type Computer part remove visitor.
+   */
+  static class ComputerPartRemoveVisitor implements ComputerPartVisitor {
 
 
-        @Override
-        public void visit(Computer computer) {
-            String[] parts = computer.getParts();
-            System.out.println("Removing following parts [ ");
-            for (String part : parts) {
-                System.out.println(part + ",");
-            }
-            System.out.println(" ]");
-        }
+    @Override
+    public void visit(Computer computer) {
+      String[] parts = computer.getParts();
+      System.out.println("Removing following parts [ ");
+      for (String part : parts) {
+        System.out.println(part + ",");
+      }
+      System.out.println(" ]");
+    }
 
-        @Override
-        public void visit(Keyboard keyboard) {
-            System.out.println("Removed Keyboard");
-        }
+    @Override
+    public void visit(Keyboard keyboard) {
+      System.out.println("Removed Keyboard");
+    }
 
-        @Override
-        public void visit(Mouse mouse) {
-            System.out.println("Removed Mouse");
-        }
+    @Override
+    public void visit(Mouse mouse) {
+      System.out.println("Removed Mouse");
+    }
 
-        @Override
-        public void visit(Monitor monitor) {
-            System.out.println("Removed Monitor");
-        }
+    @Override
+    public void visit(Monitor monitor) {
+      System.out.println("Removed Monitor");
+    }
+  }
+
+  /**
+   * The type Computer.
+   */
+  static class Computer implements ComputerPart {
+
+    private String[] parts = {"Keyboard, Mouse, Monitor"};
+
+    @Override
+    public void accept(ComputerPartVisitor visitor) {
+      visitor.visit(this);
     }
 
     /**
-     * The type Computer.
+     * Get parts string [ ].
+     *
+     * @return the string [ ]
      */
-    static class Computer implements ComputerPart {
-
-        private String[] parts = {"Keyboard, Mouse, Monitor"};
-
-        @Override
-        public void accept(ComputerPartVisitor visitor) {
-            visitor.visit(this);
-        }
-
-        /**
-         * Get parts string [ ].
-         *
-         * @return the string [ ]
-         */
-        String[] getParts() {
-            return parts;
-        }
+    String[] getParts() {
+      return parts;
     }
+  }
 
-    /**
-     * The type Keyboard.
-     */
-    static class Keyboard implements ComputerPart {
-        @Override
-        public void accept(ComputerPartVisitor visitor) {
-            visitor.visit(this);
-        }
-    }
+  /**
+   * The type Keyboard.
+   */
+  static class Keyboard implements ComputerPart {
 
-    /**
-     * The type Mouse.
-     */
-    static class Mouse implements ComputerPart {
-        @Override
-        public void accept(ComputerPartVisitor visitor) {
-            visitor.visit(this);
-        }
+    @Override
+    public void accept(ComputerPartVisitor visitor) {
+      visitor.visit(this);
     }
+  }
 
-    /**
-     * The type Monitor.
-     */
-    static class Monitor implements ComputerPart {
-        @Override
-        public void accept(ComputerPartVisitor visitor) {
-            visitor.visit(this);
-        }
+  /**
+   * The type Mouse.
+   */
+  static class Mouse implements ComputerPart {
+
+    @Override
+    public void accept(ComputerPartVisitor visitor) {
+      visitor.visit(this);
     }
+  }
+
+  /**
+   * The type Monitor.
+   */
+  static class Monitor implements ComputerPart {
+
+    @Override
+    public void accept(ComputerPartVisitor visitor) {
+      visitor.visit(this);
+    }
+  }
 
 
 }

@@ -26,72 +26,80 @@ import java.util.Scanner;
  */
 public class QueenAttack {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        solve();
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+    solve();
+  }
+
+  /**
+   * Solve.
+   */
+  static void solve() {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int k = sc.nextInt();
+    int[][] board = new int[n][n];
+    int rQueen = sc.nextInt() - 1;
+    int cQueen = sc.nextInt() - 1;
+    board[rQueen][cQueen] = 1; //Queens position
+    for (int i = 0; i < k; i++) {
+      board[sc.nextInt() - 1][sc.nextInt() - 1] = -1; //Obstacles
+    }
+    int steps = 0;
+    for (int r = rQueen, c = cQueen; c < n; c++) {
+      if (board[r][c] == -1) {
+        break;
+      }
+      steps++;
+    }
+    for (int r = rQueen, c = cQueen; c >= 0; c--) {
+      if (board[r][c] == -1) {
+        break;
+      }
+      steps++;
+    }
+    for (int r = rQueen, c = cQueen; r < n; r++) {
+      if (board[r][c] == -1) {
+        break;
+      }
+      steps++;
+    }
+    for (int r = rQueen, c = cQueen; r >= 0; r--) {
+      if (board[r][c] == -1) {
+        break;
+      }
+      steps++;
+    }
+    for (int r = rQueen, c = cQueen; r < n && c < n; r++, c++) {
+      if (board[r][c] == -1) {
+        break;
+      }
+      steps++;
+    }
+    for (int r = rQueen, c = cQueen; r >= 0 && c >= 0; r--, c--) {
+      if (board[r][c] == -1) {
+        break;
+      }
+      steps++;
+    }
+    for (int r = rQueen, c = cQueen; r >= 0 && c < n; r--, c++) {
+      if (board[r][c] == -1) {
+        break;
+      }
+      steps++;
+    }
+    for (int r = rQueen, c = cQueen; r < n && c >= 0; r++, c--) {
+      if (board[r][c] == -1) {
+        break;
+      }
+      steps++;
     }
 
-    /**
-     * Solve.
-     */
-    static void solve() {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int k = sc.nextInt();
-        int[][] board = new int[n][n];
-        int rQueen = sc.nextInt() - 1;
-        int cQueen = sc.nextInt() - 1;
-        board[rQueen][cQueen] = 1; //Queens position
-        for (int i = 0; i < k; i++) {
-            board[sc.nextInt() - 1][sc.nextInt() - 1] = -1; //Obstacles
-        }
-        int steps = 0;
-        for (int r = rQueen, c = cQueen; c < n; c++) {
-            if (board[r][c] == -1)
-                break;
-            steps++;
-        }
-        for (int r = rQueen, c = cQueen; c >= 0; c--) {
-            if (board[r][c] == -1)
-                break;
-            steps++;
-        }
-        for (int r = rQueen, c = cQueen; r < n; r++) {
-            if (board[r][c] == -1)
-                break;
-            steps++;
-        }
-        for (int r = rQueen, c = cQueen; r >= 0; r--) {
-            if (board[r][c] == -1)
-                break;
-            steps++;
-        }
-        for (int r = rQueen, c = cQueen; r < n && c < n; r++, c++) {
-            if (board[r][c] == -1)
-                break;
-            steps++;
-        }
-        for (int r = rQueen, c = cQueen; r >= 0 && c >= 0; r--, c--) {
-            if (board[r][c] == -1)
-                break;
-            steps++;
-        }
-        for (int r = rQueen, c = cQueen; r >= 0 && c < n; r--, c++) {
-            if (board[r][c] == -1)
-                break;
-            steps++;
-        }
-        for (int r = rQueen, c = cQueen; r < n && c >= 0; r++, c--) {
-            if (board[r][c] == -1)
-                break;
-            steps++;
-        }
+    System.out.println(steps - 8);
 
-        System.out.println(steps - 8);
-
-    }
+  }
 }

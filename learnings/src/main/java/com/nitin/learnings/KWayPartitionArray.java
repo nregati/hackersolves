@@ -28,49 +28,49 @@ import java.util.List;
  */
 public class KWayPartitionArray {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        int[] arr = {2, 1, 4, 5, 6};
-        printEqualSumPartitions(arr, 3);
-        printEqualSumPartitions(arr, 2);
-    }
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+    int[] arr = {2, 1, 4, 5, 6};
+    printEqualSumPartitions(arr, 3);
+    printEqualSumPartitions(arr, 2);
+  }
 
-    private static void printEqualSumPartitions(int[] arr, int part) {
+  private static void printEqualSumPartitions(int[] arr, int part) {
 
-        if (part == 1)
-            System.out.println(Arrays.toString(arr));
-        else if (part > arr.length || Arrays.stream(arr).sum() % part != 0)
-            System.out.println("Cannot partition");
-        else {
-            List<List<Integer>> partitons = new ArrayList<>();
-            Arrays.sort(arr);
-            int i = 0;
-            for (i = arr.length - 1; i >= arr.length - part; i--) {
-                List<Integer> temp = new ArrayList<>();
-                temp.add(arr[i]);
-                partitons.add(temp);
-            }
-            while (i >= 0) {
-                partitons.get(minSumIndex(partitons)).add(arr[i]);
-                i--;
-            }
-            partitons.forEach(System.out::println);
-        }
+    if (part == 1) {
+      System.out.println(Arrays.toString(arr));
+    } else if (part > arr.length || Arrays.stream(arr).sum() % part != 0) {
+      System.out.println("Cannot partition");
+    } else {
+      List<List<Integer>> partitons = new ArrayList<>();
+      Arrays.sort(arr);
+      int i = 0;
+      for (i = arr.length - 1; i >= arr.length - part; i--) {
+        List<Integer> temp = new ArrayList<>();
+        temp.add(arr[i]);
+        partitons.add(temp);
+      }
+      while (i >= 0) {
+        partitons.get(minSumIndex(partitons)).add(arr[i]);
+        i--;
+      }
+      partitons.forEach(System.out::println);
     }
+  }
 
-    private static int minSumIndex(List<List<Integer>> list) {
-        int index = 0, sum = Integer.MAX_VALUE;
-        for (int k = 0; k < list.size(); k++) {
-            int tempSum = list.get(k).stream().mapToInt(Integer::intValue).sum();
-            if (sum > tempSum) {
-                sum = tempSum;
-                index = k;
-            }
-        }
-        return index;
+  private static int minSumIndex(List<List<Integer>> list) {
+    int index = 0, sum = Integer.MAX_VALUE;
+    for (int k = 0; k < list.size(); k++) {
+      int tempSum = list.get(k).stream().mapToInt(Integer::intValue).sum();
+      if (sum > tempSum) {
+        sum = tempSum;
+        index = k;
+      }
     }
+    return index;
+  }
 }

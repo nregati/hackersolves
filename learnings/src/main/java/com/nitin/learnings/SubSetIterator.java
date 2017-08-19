@@ -30,67 +30,67 @@ import java.util.List;
  */
 public class SubSetIterator<E> {
 
-    private List<E> list;
-    private int index, max;
+  private List<E> list;
+  private int index, max;
 
-    /**
-     * Instantiates a new Sub set iterator.
-     *
-     * @param list the list
-     */
-    public SubSetIterator(List<E> list) {
-        this.list = list;
-        max = 1 << list.size();
-        this.index = 0;
+  /**
+   * Instantiates a new Sub set iterator.
+   *
+   * @param list the list
+   */
+  public SubSetIterator(List<E> list) {
+    this.list = list;
+    max = 1 << list.size();
+    this.index = 0;
+  }
+
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+
+    List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
+    List<Character> charList = Arrays.asList('a', 'b', 'c');
+
+    SubSetIterator<Integer> intIterator = new SubSetIterator<>(intList);
+    while (intIterator.hasNext()) {
+      System.out.println(intIterator.next());
     }
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-
-        List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
-        List<Character> charList = Arrays.asList('a', 'b', 'c');
-
-        SubSetIterator<Integer> intIterator = new SubSetIterator<>(intList);
-        while (intIterator.hasNext()) {
-            System.out.println(intIterator.next());
-        }
-
-        SubSetIterator<Character> charIterator = new SubSetIterator<>(charList);
-        while (charIterator.hasNext()) {
-            System.out.println(charIterator.next());
-        }
-
+    SubSetIterator<Character> charIterator = new SubSetIterator<>(charList);
+    while (charIterator.hasNext()) {
+      System.out.println(charIterator.next());
     }
 
-    /**
-     * Has next boolean.
-     *
-     * @return the boolean
-     */
-    public boolean hasNext() {
-        return index < max;
-    }
+  }
 
-    /**
-     * Next list.
-     *
-     * @return the list
-     */
-    public List<E> next() {
-        List<E> tempList = new ArrayList<>();
-        int flag = 1;
-        for (E element : list) {
-            if ((index & flag) != 0) {
-                tempList.add(element);
-            }
-            flag <<= 1;
-        }
-        ++index;
-        return tempList;
+  /**
+   * Has next boolean.
+   *
+   * @return the boolean
+   */
+  public boolean hasNext() {
+    return index < max;
+  }
+
+  /**
+   * Next list.
+   *
+   * @return the list
+   */
+  public List<E> next() {
+    List<E> tempList = new ArrayList<>();
+    int flag = 1;
+    for (E element : list) {
+      if ((index & flag) != 0) {
+        tempList.add(element);
+      }
+      flag <<= 1;
     }
+    ++index;
+    return tempList;
+  }
 
 }

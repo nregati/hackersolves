@@ -29,185 +29,186 @@ import java.util.PriorityQueue;
  */
 public class Dijkstra {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
 
-    }
+  }
 
-    /**
-     * Compute paths.
-     *
-     * @param source the source
-     */
-    public void computePaths(Vertex source) {
+  /**
+   * Compute paths.
+   *
+   * @param source the source
+   */
+  public void computePaths(Vertex source) {
 
-        PriorityQueue<Vertex> queue = new PriorityQueue<>();
-        queue.offer(source);
+    PriorityQueue<Vertex> queue = new PriorityQueue<>();
+    queue.offer(source);
 
-        while (!queue.isEmpty()) {
-            Vertex s = queue.poll();
-            if (s.getAdjacencies().length == 0)
-                continue;
-            for (Edge e : s.getAdjacencies()) {
-                Vertex t = e.getTarget();
-                int wt = e.getWeight();
-                int throughS = s.getMinValue() + wt;
-                if (throughS < t.getMinValue()) {
-                    queue.remove(t);
-                    t.setMinValue(throughS);
-                    t.setPrevious(s);
-                    queue.add(t);
-                }
-            }
+    while (!queue.isEmpty()) {
+      Vertex s = queue.poll();
+      if (s.getAdjacencies().length == 0) {
+        continue;
+      }
+      for (Edge e : s.getAdjacencies()) {
+        Vertex t = e.getTarget();
+        int wt = e.getWeight();
+        int throughS = s.getMinValue() + wt;
+        if (throughS < t.getMinValue()) {
+          queue.remove(t);
+          t.setMinValue(throughS);
+          t.setPrevious(s);
+          queue.add(t);
         }
-
+      }
     }
 
+  }
+
+  /**
+   * Gets shortest path.
+   *
+   * @param target the target
+   * @return the shortest path
+   */
+  public List<Vertex> getShortestPath(Vertex target) {
+
+    List<Vertex> path = new ArrayList<>();
+    for (Vertex v = target; v != null; v = v.getPrevious()) {
+      path.add(v);
+    }
+    Collections.reverse(path);
+    return path;
+  }
+
+  /**
+   * The type Edge.
+   */
+  public static class Edge {
+
+    private Vertex target;
+    private int weight;
+
     /**
-     * Gets shortest path.
+     * Instantiates a new Edge.
      *
      * @param target the target
-     * @return the shortest path
+     * @param weight the weight
      */
-    public List<Vertex> getShortestPath(Vertex target) {
-
-        List<Vertex> path = new ArrayList<>();
-        for (Vertex v = target; v != null; v = v.getPrevious()) {
-            path.add(v);
-        }
-        Collections.reverse(path);
-        return path;
+    public Edge(Vertex target, int weight) {
+      this.target = target;
+      this.weight = weight;
     }
 
     /**
-     * The type Edge.
+     * Gets target.
+     *
+     * @return the target
      */
-    public static class Edge {
-
-        private Vertex target;
-        private int weight;
-
-        /**
-         * Instantiates a new Edge.
-         *
-         * @param target the target
-         * @param weight the weight
-         */
-        public Edge(Vertex target, int weight) {
-            this.target = target;
-            this.weight = weight;
-        }
-
-        /**
-         * Gets target.
-         *
-         * @return the target
-         */
-        public Vertex getTarget() {
-            return target;
-        }
-
-        /**
-         * Sets target.
-         *
-         * @param target the target
-         */
-        public void setTarget(Vertex target) {
-            this.target = target;
-        }
-
-        /**
-         * Gets weight.
-         *
-         * @return the weight
-         */
-        public int getWeight() {
-            return weight;
-        }
-
-        /**
-         * Sets weight.
-         *
-         * @param weight the weight
-         */
-        public void setWeight(int weight) {
-            this.weight = weight;
-        }
+    public Vertex getTarget() {
+      return target;
     }
 
     /**
-     * The type Vertex.
+     * Sets target.
+     *
+     * @param target the target
      */
-    public static class Vertex {
-
-        private int minValue;
-        private Edge[] adjacencies;
-        private Vertex previous;
-
-        /**
-         * Instantiates a new Vertex.
-         */
-        public Vertex() {
-            this.minValue = 0;
-        }
-
-        /**
-         * Gets min value.
-         *
-         * @return the min value
-         */
-        public int getMinValue() {
-            return minValue;
-        }
-
-        /**
-         * Sets min value.
-         *
-         * @param minValue the min value
-         */
-        public void setMinValue(int minValue) {
-            this.minValue = minValue;
-        }
-
-        /**
-         * Get adjacencies edge [ ].
-         *
-         * @return the edge [ ]
-         */
-        public Edge[] getAdjacencies() {
-            return adjacencies;
-        }
-
-        /**
-         * Sets adjacencies.
-         *
-         * @param adjacencies the adjacencies
-         */
-        public void setAdjacencies(Edge[] adjacencies) {
-            this.adjacencies = adjacencies;
-        }
-
-        /**
-         * Gets previous.
-         *
-         * @return the previous
-         */
-        public Vertex getPrevious() {
-            return previous;
-        }
-
-        /**
-         * Sets previous.
-         *
-         * @param previous the previous
-         */
-        public void setPrevious(Vertex previous) {
-            this.previous = previous;
-        }
+    public void setTarget(Vertex target) {
+      this.target = target;
     }
+
+    /**
+     * Gets weight.
+     *
+     * @return the weight
+     */
+    public int getWeight() {
+      return weight;
+    }
+
+    /**
+     * Sets weight.
+     *
+     * @param weight the weight
+     */
+    public void setWeight(int weight) {
+      this.weight = weight;
+    }
+  }
+
+  /**
+   * The type Vertex.
+   */
+  public static class Vertex {
+
+    private int minValue;
+    private Edge[] adjacencies;
+    private Vertex previous;
+
+    /**
+     * Instantiates a new Vertex.
+     */
+    public Vertex() {
+      this.minValue = 0;
+    }
+
+    /**
+     * Gets min value.
+     *
+     * @return the min value
+     */
+    public int getMinValue() {
+      return minValue;
+    }
+
+    /**
+     * Sets min value.
+     *
+     * @param minValue the min value
+     */
+    public void setMinValue(int minValue) {
+      this.minValue = minValue;
+    }
+
+    /**
+     * Get adjacencies edge [ ].
+     *
+     * @return the edge [ ]
+     */
+    public Edge[] getAdjacencies() {
+      return adjacencies;
+    }
+
+    /**
+     * Sets adjacencies.
+     *
+     * @param adjacencies the adjacencies
+     */
+    public void setAdjacencies(Edge[] adjacencies) {
+      this.adjacencies = adjacencies;
+    }
+
+    /**
+     * Gets previous.
+     *
+     * @return the previous
+     */
+    public Vertex getPrevious() {
+      return previous;
+    }
+
+    /**
+     * Sets previous.
+     *
+     * @param previous the previous
+     */
+    public void setPrevious(Vertex previous) {
+      this.previous = previous;
+    }
+  }
 
 }

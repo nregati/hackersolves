@@ -32,30 +32,34 @@ import java.util.Calendar;
 public class LibFine {
 
 
-    /**
-     * Solve.
-     *
-     * @throws IOException    the io exception
-     * @throws ParseException the parse exception
-     */
-    public static void solve() throws IOException, ParseException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        SimpleDateFormat format = new SimpleDateFormat("dd MM yyyy");
-        Calendar actualDate = Calendar.getInstance();
-        Calendar expectedDate = Calendar.getInstance();
-        actualDate.setTime(format.parse(br.readLine()));
-        expectedDate.setTime(format.parse(br.readLine()));
-        if (actualDate.compareTo(expectedDate) <= 0)
-            System.out.println(0);
-        else {
-            if (expectedDate.get(Calendar.YEAR) == actualDate.get(Calendar.YEAR)) {
-                if (expectedDate.get(Calendar.MONTH) == actualDate.get(Calendar.MONTH)) {
-                    System.out.println(15 * (actualDate.get(Calendar.DAY_OF_MONTH) - expectedDate.get(Calendar.DAY_OF_MONTH)));
-                } else
-                    System.out.println(500 * (actualDate.get(Calendar.MONTH) - expectedDate.get(Calendar.MONTH)));
-
-            } else
-                System.out.println(10000);
+  /**
+   * Solve.
+   *
+   * @throws IOException the io exception
+   * @throws ParseException the parse exception
+   */
+  public static void solve() throws IOException, ParseException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    SimpleDateFormat format = new SimpleDateFormat("dd MM yyyy");
+    Calendar actualDate = Calendar.getInstance();
+    Calendar expectedDate = Calendar.getInstance();
+    actualDate.setTime(format.parse(br.readLine()));
+    expectedDate.setTime(format.parse(br.readLine()));
+    if (actualDate.compareTo(expectedDate) <= 0) {
+      System.out.println(0);
+    } else {
+      if (expectedDate.get(Calendar.YEAR) == actualDate.get(Calendar.YEAR)) {
+        if (expectedDate.get(Calendar.MONTH) == actualDate.get(Calendar.MONTH)) {
+          System.out.println(15 * (actualDate.get(Calendar.DAY_OF_MONTH) - expectedDate
+              .get(Calendar.DAY_OF_MONTH)));
+        } else {
+          System.out
+              .println(500 * (actualDate.get(Calendar.MONTH) - expectedDate.get(Calendar.MONTH)));
         }
+
+      } else {
+        System.out.println(10000);
+      }
     }
+  }
 }

@@ -24,40 +24,42 @@ package com.nitin.learnings;
  */
 public class BinarySearch {
 
-    /**
-     * Search int.
-     *
-     * @param arr           the arr
-     * @param valueToSearch the value to search
-     * @return the int
-     */
-    public static int search(int[] arr, int valueToSearch) {
+  /**
+   * Search int.
+   *
+   * @param arr the arr
+   * @param valueToSearch the value to search
+   * @return the int
+   */
+  public static int search(int[] arr, int valueToSearch) {
 
-        return searchUtil(arr, valueToSearch, 0, arr.length - 1);
+    return searchUtil(arr, valueToSearch, 0, arr.length - 1);
+  }
+
+  private static int searchUtil(int[] arr, int valueToSearch, int low, int high) {
+
+    if (high >= low) {
+
+      int mid = (low + high) / 2;
+      if (arr[mid] == valueToSearch) {
+        return mid;
+      }
+
+      if (valueToSearch > arr[mid]) {
+        return searchUtil(arr, valueToSearch, mid + 1, high);
+      } else {
+        return searchUtil(arr, valueToSearch, low, mid - 1);
+      }
     }
+    return -1;
+  }
 
-    private static int searchUtil(int[] arr, int valueToSearch, int low, int high) {
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
 
-        if (high >= low) {
-
-            int mid = (low + high) / 2;
-            if (arr[mid] == valueToSearch)
-                return mid;
-
-            if (valueToSearch > arr[mid])
-                return searchUtil(arr, valueToSearch, mid + 1, high);
-            else
-                return searchUtil(arr, valueToSearch, low, mid - 1);
-        }
-        return -1;
-    }
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-
-    }
+  }
 }

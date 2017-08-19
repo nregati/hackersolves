@@ -20,95 +20,94 @@
 package com.nitin.designpatterns;
 
 /**
- * Created by nitin_regati on 22/07/17.
- * <p>
- * Iterator pattern is very commonly used design pattern in Java and .Net programming environment.
- * This pattern is used to get a way to access the elements of a collection object in sequential
- * manner without any need to know its underlying representation.
- * <p>
- * Iterator pattern falls under behavioral pattern category.
- * <p>
- * UML: https://www.tutorialspoint.com/design_pattern/images/iterator_pattern_uml_diagram.jpg
+ * Created by nitin_regati on 22/07/17. <p> Iterator pattern is very commonly used design pattern in
+ * Java and .Net programming environment. This pattern is used to get a way to access the elements
+ * of a collection object in sequential manner without any need to know its underlying
+ * representation. <p> Iterator pattern falls under behavioral pattern category. <p> UML:
+ * https://www.tutorialspoint.com/design_pattern/images/iterator_pattern_uml_diagram.jpg
  */
 public class IteratorPattern {
 
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+
+    NamesRepository repository = new NamesRepository();
+    Iterator repoItr = repository.getIterator();
+    while (repoItr.hasNext()) {
+      System.out.println(String.valueOf(repoItr.next()));
+    }
+  }
+
+  /**
+   * The interface Iterator.
+   */
+  public interface Iterator {
+
     /**
-     * The entry point of application.
+     * Has next boolean.
      *
-     * @param args the input arguments
+     * @return the boolean
      */
-    public static void main(String[] args) {
-
-        NamesRepository repository = new NamesRepository();
-        Iterator repoItr = repository.getIterator();
-        while (repoItr.hasNext())
-            System.out.println(String.valueOf(repoItr.next()));
-    }
+    boolean hasNext();
 
     /**
-     * The interface Iterator.
+     * Next object.
+     *
+     * @return the object
      */
-    public interface Iterator {
-        /**
-         * Has next boolean.
-         *
-         * @return the boolean
-         */
-        boolean hasNext();
+    Object next();
+  }
 
-        /**
-         * Next object.
-         *
-         * @return the object
-         */
-        Object next();
-    }
+  /**
+   * The interface Container.
+   */
+  public interface Container {
 
     /**
-     * The interface Container.
+     * Gets iterator.
+     *
+     * @return the iterator
      */
-    public interface Container {
-        /**
-         * Gets iterator.
-         *
-         * @return the iterator
-         */
 
         /*
         Container has-a iterator
          */
-        Iterator getIterator();
-    }
+    Iterator getIterator();
+  }
 
-    /**
-     * The type Names repository.
-     */
-    public static class NamesRepository implements Container {
+  /**
+   * The type Names repository.
+   */
+  public static class NamesRepository implements Container {
 
-        private String[] names = {"abc", "bcd", "cde", "def"};
+    private String[] names = {"abc", "bcd", "cde", "def"};
 
-        @Override
-        public Iterator getIterator() {
+    @Override
+    public Iterator getIterator() {
             /*
             Forcing to implement Iterator
              */
-            return new NameIterator();
-        }
-
-        private class NameIterator implements Iterator {
-
-            private int index;
-
-            @Override
-            public boolean hasNext() {
-                return index < names.length;
-            }
-
-            @Override
-            public Object next() {
-                return this.hasNext() ? names[index++] : null;
-            }
-        }
+      return new NameIterator();
     }
+
+    private class NameIterator implements Iterator {
+
+      private int index;
+
+      @Override
+      public boolean hasNext() {
+        return index < names.length;
+      }
+
+      @Override
+      public Object next() {
+        return this.hasNext() ? names[index++] : null;
+      }
+    }
+  }
 
 }

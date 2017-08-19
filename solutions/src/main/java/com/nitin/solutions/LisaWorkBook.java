@@ -26,32 +26,34 @@ import java.util.Scanner;
  */
 public class LisaWorkBook {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        solve();
-    }
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+    solve();
+  }
 
-    /**
-     * Solve.
-     */
-    public static void solve() {
-        Scanner sc = new Scanner(System.in);
-        int chap = sc.nextInt();
-        int probPerPage = sc.nextInt();
-        int page = 1, specialProb = 0;
-        for (int i = 1; i <= chap; i++) {
-            int probs = sc.nextInt();
-            for (int j = 1; j <= probs; j++) {
-                if (j == page)
-                    specialProb++;
-                if (j % probPerPage == 0)
-                    page++;
-            }
+  /**
+   * Solve.
+   */
+  public static void solve() {
+    Scanner sc = new Scanner(System.in);
+    int chap = sc.nextInt();
+    int probPerPage = sc.nextInt();
+    int page = 1, specialProb = 0;
+    for (int i = 1; i <= chap; i++) {
+      int probs = sc.nextInt();
+      for (int j = 1; j <= probs; j++) {
+        if (j == page) {
+          specialProb++;
         }
-        System.out.println(specialProb);
+        if (j % probPerPage == 0) {
+          page++;
+        }
+      }
     }
+    System.out.println(specialProb);
+  }
 }

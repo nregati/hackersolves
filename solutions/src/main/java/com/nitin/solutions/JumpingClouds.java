@@ -26,29 +26,31 @@ import java.util.Scanner;
  */
 public class JumpingClouds {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        solve();
-    }
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+    solve();
+  }
 
-    /**
-     * Solve.
-     */
-    static void solve() {
-        Scanner sc = new Scanner(System.in);
-        int nofClouds = sc.nextInt();
-        int[] clouds = new int[nofClouds];
-        for (int i = 0; i < nofClouds; i++) {
-            clouds[i] = sc.nextInt();
-        }
-        int count = -1;
-        for (int i = 0; i < nofClouds; i++, count++) {
-            if (i < nofClouds - 2 && clouds[i + 2] == 0) i++;
-        }
-        System.out.println(count);
+  /**
+   * Solve.
+   */
+  static void solve() {
+    Scanner sc = new Scanner(System.in);
+    int nofClouds = sc.nextInt();
+    int[] clouds = new int[nofClouds];
+    for (int i = 0; i < nofClouds; i++) {
+      clouds[i] = sc.nextInt();
     }
+    int count = -1;
+    for (int i = 0; i < nofClouds; i++, count++) {
+      if (i < nofClouds - 2 && clouds[i + 2] == 0) {
+        i++;
+      }
+    }
+    System.out.println(count);
+  }
 }

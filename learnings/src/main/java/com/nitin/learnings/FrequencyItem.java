@@ -24,69 +24,67 @@ package com.nitin.learnings;
  */
 public class FrequencyItem {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
 
-        int b[] = {2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 10, 10, 10, 18, 18, 20, 20, 20, 20, 20};
+    int b[] = {2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 10, 10, 10, 18, 18, 20, 20, 20, 20, 20};
 
-        System.out.println("First occurrence of 10: " + FrequencyItem.getFirstOccurrence(b, 10));
-        System.out.println("Last occurrence of 10: " + FrequencyItem.getLastOccurrence(b, 10));
-        System.out.println("Count total occurrences of 10: " + FrequencyItem.getFrequency(b, 10));
+    System.out.println("First occurrence of 10: " + FrequencyItem.getFirstOccurrence(b, 10));
+    System.out.println("Last occurrence of 10: " + FrequencyItem.getLastOccurrence(b, 10));
+    System.out.println("Count total occurrences of 10: " + FrequencyItem.getFrequency(b, 10));
 
-        System.out.println("First occurrence of 2: " + FrequencyItem.getFirstOccurrence(b, 2));
-        System.out.println("Last occurrence of 2: " + FrequencyItem.getLastOccurrence(b, 2));
-        System.out.println("Count total occurrences of 2: " + FrequencyItem.getFrequency(b, 2));
+    System.out.println("First occurrence of 2: " + FrequencyItem.getFirstOccurrence(b, 2));
+    System.out.println("Last occurrence of 2: " + FrequencyItem.getLastOccurrence(b, 2));
+    System.out.println("Count total occurrences of 2: " + FrequencyItem.getFrequency(b, 2));
+  }
+
+  private static int getFirstOccurrence(int[] arr, int valueToSearch) {
+
+    int low = 0;
+    int high = arr.length - 1;
+    int result = -1;
+
+    while (low <= high) {
+      int mid = (high + low) / 2;
+
+      if (valueToSearch == arr[mid]) {
+        result = mid;
+        high = mid - 1;
+      } else if (valueToSearch > arr[mid]) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
+    return result;
+  }
 
-    private static int getFirstOccurrence(int[] arr, int valueToSearch) {
+  private static int getLastOccurrence(int[] arr, int valueToSearch) {
 
-        int low = 0;
-        int high = arr.length - 1;
-        int result = -1;
+    int low = 0;
+    int high = arr.length - 1;
+    int result = -1;
 
+    while (low <= high) {
+      int mid = (high + low) / 2;
 
-        while (low <= high) {
-            int mid = (high + low) / 2;
-
-            if (valueToSearch == arr[mid]) {
-                result = mid;
-                high = mid - 1;
-            } else if (valueToSearch > arr[mid]) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-        }
-        return result;
+      if (valueToSearch == arr[mid]) {
+        result = mid;
+        low = mid + 1;
+      } else if (valueToSearch > arr[mid]) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
+    return result;
+  }
 
-    private static int getLastOccurrence(int[] arr, int valueToSearch) {
-
-        int low = 0;
-        int high = arr.length - 1;
-        int result = -1;
-
-
-        while (low <= high) {
-            int mid = (high + low) / 2;
-
-            if (valueToSearch == arr[mid]) {
-                result = mid;
-                low = mid + 1;
-            } else if (valueToSearch > arr[mid]) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-        }
-        return result;
-    }
-
-    private static int getFrequency(int[] arr, int value) {
-        return getLastOccurrence(arr, value) - getFirstOccurrence(arr, value) + 1;
-    }
+  private static int getFrequency(int[] arr, int value) {
+    return getLastOccurrence(arr, value) - getFirstOccurrence(arr, value) + 1;
+  }
 }

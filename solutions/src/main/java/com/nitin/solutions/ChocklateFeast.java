@@ -26,36 +26,37 @@ import java.util.Scanner;
  */
 public class ChocklateFeast {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        solve();
-    }
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+    solve();
+  }
 
-    /**
-     * Solve.
-     */
-    public static void solve() {
+  /**
+   * Solve.
+   */
+  public static void solve() {
 
-        Scanner sc = new Scanner(System.in);
-        int trips = sc.nextInt();
-        int[] chocklates = new int[trips];
-        for (int i = 0; i < trips; i++) {
-            int n = sc.nextInt();
-            int c = sc.nextInt();
-            int m = sc.nextInt();
-            chocklates[i] = n / c;
-            int wrapers = chocklates[i];
-            while (wrapers >= m) {
-                int exchange = wrapers / m;
-                chocklates[i] += exchange;
-                wrapers = wrapers % m + exchange;
-            }
-        }
-        for (int i = 0; i < trips; i++)
-            System.out.println(chocklates[i]);
+    Scanner sc = new Scanner(System.in);
+    int trips = sc.nextInt();
+    int[] chocklates = new int[trips];
+    for (int i = 0; i < trips; i++) {
+      int n = sc.nextInt();
+      int c = sc.nextInt();
+      int m = sc.nextInt();
+      chocklates[i] = n / c;
+      int wrapers = chocklates[i];
+      while (wrapers >= m) {
+        int exchange = wrapers / m;
+        chocklates[i] += exchange;
+        wrapers = wrapers % m + exchange;
+      }
     }
+    for (int i = 0; i < trips; i++) {
+      System.out.println(chocklates[i]);
+    }
+  }
 }

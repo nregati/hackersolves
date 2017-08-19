@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. [Author nitin_regati] [File LazyBartender.java]
+ * Copyright (c) 2017. [Author nitin_regati] [File DictionarySort.java]
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -17,43 +17,47 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.nitin.solutions;
+package com.nitin.learnings;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
- * Created by nitin_regati on 18/07/17.
+ * Created by nitin_regati on 02/08/17
  */
-public class LazyBartender {
+public class DictionarySort {
 
-  /**
-   * The entry point of application.
-   *
-   * @param args the input arguments
-   */
   public static void main(String[] args) {
 
-    List<int[]> custDrinks = new ArrayList<>();
-    custDrinks.add(new int[]{2, 3, 5, 7, 9});
-    custDrinks.add(new int[]{5});
-    custDrinks.add(new int[]{2, 3});
-    custDrinks.add(new int[]{4});
-    custDrinks.add(new int[]{3, 4, 3, 5, 7});
+    DictionaryList<String> dictionaryList = new DictionaryList<>();
+    dictionaryList.add("abc");
+    dictionaryList.add("zzz");
+    dictionaryList.add("def");
+    dictionaryList.add("abd");
+    dictionaryList.add("abcd");
+    dictionaryList.add("abyd");
+    dictionaryList.add("abydx");
+    dictionaryList.add("z");
+    System.out.println("UnSorted: " + Arrays.toString(dictionaryList.toArray()));
+    dictionaryList.sort();
+    System.out.println("Sorted: " + Arrays.toString(dictionaryList.toArray()));
   }
 
-  /**
-   * Solve.
-   *
-   * @param custDrinks the cust drinks
-   */
-  public void solve(List<int[]> custDrinks) {
+  private static class DictionaryList<E> extends ArrayList<E> {
 
-    // TODO: 18/07/17
-        /*
-        Perform drink to customer relation
-        Sort by length of customers for a drink
-        Loop through available drinks and add the drink if it increases customer length else leave
-         */
+    void sort() {
+      super.sort(new DictComparator<>());
+    }
+
+    private static class DictComparator<E> implements Comparator<E> {
+
+      @Override
+      public int compare(Object o1, Object o2) {
+        int sum1 = o1.toString().chars().sum();
+        int sum2 = o2.toString().chars().sum();
+        return Integer.compare(sum1, sum2);
+      }
+    }
   }
 }

@@ -20,102 +20,101 @@
 package com.nitin.designpatterns;
 
 /**
- * Created by nitin_regati on 22/07/17.
- * <p>
- * Decorator pattern allows a user to add new functionality to an existing object without altering its structure.
- * This type of design pattern comes under structural pattern as this pattern acts as a wrapper to existing class.
- * <p>
- * UML: https://www.tutorialspoint.com/design_pattern/images/decorator_pattern_uml_diagram.jpg
+ * Created by nitin_regati on 22/07/17. <p> Decorator pattern allows a user to add new functionality
+ * to an existing object without altering its structure. This type of design pattern comes under
+ * structural pattern as this pattern acts as a wrapper to existing class. <p> UML:
+ * https://www.tutorialspoint.com/design_pattern/images/decorator_pattern_uml_diagram.jpg
  */
 public class DecoratorPattern {
 
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
+  public static void main(String[] args) {
+
+    Circle circle = new Circle();
+    circle.draw();
+    RedBorderDecorator redCircle = new RedBorderDecorator(new Circle());
+    redCircle.draw();
+    Rectangle rectangle = new Rectangle();
+    rectangle.draw();
+
+  }
+
+  /**
+   * The interface Shape.
+   */
+  interface Shape {
+
     /**
-     * The entry point of application.
+     * Draw.
+     */
+    void draw();
+  }
+
+  private static class Rectangle implements Shape {
+
+    @Override
+    public void draw() {
+      System.out.println("Draw Rectangle ");
+    }
+  }
+
+  private static class Circle implements Shape {
+
+    @Override
+    public void draw() {
+      System.out.println("Draw Circle ");
+    }
+  }
+
+  private static abstract class AbstractShapeDecorator implements Shape {
+
+    /**
+     * The Shape.
+     */
+    Shape shape;
+
+    /**
+     * Instantiates a new Abstract shape decorator.
      *
-     * @param args the input arguments
+     * @param shape the shape
      */
-    public static void main(String[] args) {
+    AbstractShapeDecorator(Shape shape) {
+      this.shape = shape;
+    }
+  }
 
-        Circle circle = new Circle();
-        circle.draw();
-        RedBorderDecorator redCircle = new RedBorderDecorator(new Circle());
-        redCircle.draw();
-        Rectangle rectangle = new Rectangle();
-        rectangle.draw();
+  private static class RedBorderDecorator extends AbstractShapeDecorator {
 
+    /**
+     * Instantiates a new Red border decorator.
+     *
+     * @param shape the shape
+     */
+    RedBorderDecorator(Shape shape) {
+      super(shape);
+    }
+
+    @Override
+    public void draw() {
+      shapeWithRedBorder(shape);
     }
 
     /**
-     * The interface Shape.
+     * Shape with red border.
+     *
+     * @param shape the shape
      */
-    interface Shape {
-        /**
-         * Draw.
-         */
-        void draw();
-    }
-
-    private static class Rectangle implements Shape {
-
-        @Override
-        public void draw() {
-            System.out.println("Draw Rectangle ");
-        }
-    }
-
-    private static class Circle implements Shape {
-
-        @Override
-        public void draw() {
-            System.out.println("Draw Circle ");
-        }
-    }
-
-    private static abstract class AbstractShapeDecorator implements Shape {
-
-        /**
-         * The Shape.
-         */
-        Shape shape;
-
-        /**
-         * Instantiates a new Abstract shape decorator.
-         *
-         * @param shape the shape
-         */
-        AbstractShapeDecorator(Shape shape) {
-            this.shape = shape;
-        }
-    }
-
-    private static class RedBorderDecorator extends AbstractShapeDecorator {
-
-        /**
-         * Instantiates a new Red border decorator.
-         *
-         * @param shape the shape
-         */
-        RedBorderDecorator(Shape shape) {
-            super(shape);
-        }
-
-        @Override
-        public void draw() {
-            shapeWithRedBorder(shape);
-        }
-
-        /**
-         * Shape with red border.
-         *
-         * @param shape the shape
-         */
-        void shapeWithRedBorder(Shape shape) {
+    void shapeWithRedBorder(Shape shape) {
             /*
              * Here we are adding border function without actually changing the Shape structure
              */
-            shape.draw();
-            System.out.println("With Red border ");
-        }
+      shape.draw();
+      System.out.println("With Red border ");
     }
+  }
 }
 

@@ -22,53 +22,58 @@ package com.nitin.solutions;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * The type Amz test.
  */
 public class AmzTest {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     * @throws IOException the io exception
-     */
-    public static void main(String[] args) throws IOException {
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   * @throws IOException the io exception
+   */
+  public static void main(String[] args) throws IOException {
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int noofWords = Integer.parseInt(br.readLine());
-        List<String> words = new ArrayList<>();
-        for (int i = 0; i < noofWords; i++) {
-            words.add(br.readLine());
-        }
-        words.sort((o1, o2) -> {
-            if (o1.length() > o2.length()) {
-                return 1;
-            } else if (o1.length() < o2.length()) {
-                return -1;
-            } else {
-                return 0;
-            }
-        });
-        Map<Integer, List<String>> map = new HashMap<>();
-        for (String word : words) {
-            int len = word.length();
-            List<String> wordToLen = map.get(len);
-            if (null == wordToLen) {
-                wordToLen = new ArrayList<>();
-            }
-            wordToLen.add(word);
-            map.put(len, wordToLen);
-        }
-
-        for (Map.Entry<Integer, List<String>> entry : map.entrySet()) {
-            Set<String> setToPrint = new TreeSet<>(entry.getValue());
-            setToPrint.forEach(System.out::println);
-        }
-
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int noofWords = Integer.parseInt(br.readLine());
+    List<String> words = new ArrayList<>();
+    for (int i = 0; i < noofWords; i++) {
+      words.add(br.readLine());
     }
+    words.sort((o1, o2) -> {
+      if (o1.length() > o2.length()) {
+        return 1;
+      } else if (o1.length() < o2.length()) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    Map<Integer, List<String>> map = new HashMap<>();
+    for (String word : words) {
+      int len = word.length();
+      List<String> wordToLen = map.get(len);
+      if (null == wordToLen) {
+        wordToLen = new ArrayList<>();
+      }
+      wordToLen.add(word);
+      map.put(len, wordToLen);
+    }
+
+    for (Map.Entry<Integer, List<String>> entry : map.entrySet()) {
+      Set<String> setToPrint = new TreeSet<>(entry.getValue());
+      setToPrint.forEach(System.out::println);
+    }
+
+  }
 
 }
 
