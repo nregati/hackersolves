@@ -272,8 +272,8 @@ public class BinaryTree {
       builder.append("# ");
       return builder.toString();
     }
-    builder.append(node.data + " ");
-    serializeBinaryTreeHelper(node.left, builder);
+		builder.append(node.data).append(" ");
+		serializeBinaryTreeHelper(node.left, builder);
     serializeBinaryTreeHelper(node.right, builder);
     return builder.toString().trim();
   }

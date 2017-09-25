@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. [Author nitin_regati] [File DecisionTrees.java]
+ * Copyright (c) 2017. [Author nitin_regati] [File BTree.java]
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -17,37 +17,12 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import java.io.File;
-import java.net.URL;
-import weka.core.Instances;
-import weka.core.converters.ConverterUtils.DataSource;
+package com.nitin.learnings;
 
 /**
- * Created by nitin_regati on 19/08/17
+ * Created by nitin_regati on 30/08/17
  */
-public class DecisionTrees {
+public class BTree {
 
-	public static void main(String[] args) {
-
-		DecisionTrees trees = new DecisionTrees();
-		trees.importData();
-	}
-
-	public void importData() {
-
-		String fileName = "Social_Network_Ads.csv";
-		URL url = Thread.currentThread().getContextClassLoader().getResource(fileName);
-		if (null != url) {
-			File dataFile = new File(url.getFile());
-			try {
-				DataSource dataSource = new DataSource(dataFile.getAbsolutePath());
-				Instances data = dataSource.getDataSet();
-				System.out.println(data);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		}
-	}
 
 }
