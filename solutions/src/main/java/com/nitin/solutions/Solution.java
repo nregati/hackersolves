@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. [Author nitin_regati] [File settings.gradle]
+ * Copyright (c) 2017. [Author nitin_regati] [File Solution.java]
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -17,8 +17,49 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-include "learnings", "solutions"
-include 'designpatterns'
-include 'ml'
-include 'mapreduce'
+package com.nitin.solutions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * Created by nitin_regati on 27/09/17
+ */
+public class Solution {
+
+	public static void main(String[] args) {
+
+	}
+
+	public List<Integer> getElem(List<Integer> list, int N) {
+		Map<Integer, Integer> map = new HashMap<>();
+		List<Integer> returnList = new ArrayList<>();
+		for(int ele : list){
+			Integer valCounter = map.get(ele);
+			if(null == valCounter){
+				map.put(ele, 1);
+			} else {
+				valCounter++;
+				map.put(ele, valCounter);
+			}
+		}
+		for(Map.Entry<Integer, Integer> entrySet : map.entrySet()){
+			if(entrySet.getValue() == N)
+				returnList.add(entrySet.getKey());
+		}
+
+		return returnList;
+	}
+
+	public boolean dupeFinder(Integer[] arr) {
+		int size = arr.length;
+		Set<Integer> set = new HashSet<>(Arrays.asList(arr));
+		return set.size() != size;
+	}
+
+}

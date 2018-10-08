@@ -50,13 +50,10 @@ public class Dijkstra {
 
     while (!queue.isEmpty()) {
       Vertex s = queue.poll();
-      if (s.getAdjacencies().length == 0) {
-        continue;
-      }
       for (Edge e : s.getAdjacencies()) {
-        Vertex t = e.getTarget();
         int wt = e.getWeight();
         int throughS = s.getMinValue() + wt;
+        Vertex t = e.getTarget();
         if (throughS < t.getMinValue()) {
           queue.remove(t);
           t.setMinValue(throughS);
